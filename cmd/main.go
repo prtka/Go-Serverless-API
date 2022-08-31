@@ -4,12 +4,12 @@ import (
 	"os"
 
 	"github.com/aws/aws-lambda-go/events"
-	"github.com/aws/aws-sdk-go-v2/aws"
-	"github.com/aws/aws-sdk-go-v2/service/lambda"
+	"github.com/aws/aws-lambda-go/lambda"
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/dynamodb"
 	"github.com/aws/aws-sdk-go/service/dynamodb/dynamodbiface"
+
 	"github.com/prtka/go-serverless-api/pkg/handlers"
 )
 
@@ -21,9 +21,11 @@ func main() {
 	region := os.Getenv("AWS_REGION")
 	awsSession, err := session.NewSession(&aws.Config{
 		Region: aws.String(region)})
+
 	if err != nil {
 		return
 	}
+
 	dynamoServer = dynamodb.New(awsSession)
 	lambda.Start(handler)
 }
@@ -41,7 +43,7 @@ func handler(req events.APIGatewayProxyRequest) (*events.APIGatewayProxyResponse
 	case "DELETE":
 		return handlers.DeleteUser(req, tableName, dynamoServer)
 	default:
-		return handlers.UnhandledMethodResponse(req, tableName, dynamoServer)
+		return handlers.UnhandledMethodResponse()
 	}
 
 }
