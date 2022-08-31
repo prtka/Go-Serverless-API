@@ -1,4 +1,4 @@
-module go-serverless-test
+module go-serverless-api
 
 go 1.17
 

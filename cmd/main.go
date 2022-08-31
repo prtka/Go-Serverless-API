@@ -3,8 +3,6 @@ package main
 import (
 	"os"
 
-	"github.com/go-serverless-test/pkg/handlers"
-
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go-v2/service/lambda"
@@ -12,6 +10,7 @@ import (
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/dynamodb"
 	"github.com/aws/aws-sdk-go/service/dynamodb/dynamodbiface"
+	"github.com/prtka/go-serverless-api/pkg/handlers"
 )
 
 var (
